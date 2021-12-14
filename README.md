@@ -8,7 +8,7 @@ This is a website that allows the user to view, add, edit and delete restaurant 
 When adding a restaurant, the user is required to provide the restaurant's name, cuisine style and give a rating to it. Afterwards, the user will be able to view the restaurant at the homepage. If the user feels like editing the restaurant (be it that the user has made a typo or that the user feels the rating is not accurate), the user can edit their reviews by clicking the "Edit" button. Lastly, the user can also delete the restaurant they have typed in should they feel like it. In summary, this is a website that allows the user to carry out Create, Read, Update and Delete (CRUD) operation.
 
 
-To use this website for personal use, ensure that you have a MongoDB Atlas account and refer to this tutorial on how to connect your application to your database. Bear in mind that this repository do not have a `.env.local` file so it is up to the user to create the file yourself.
+To use this website for personal use, ensure that you have a MongoDB Atlas account and refer to this tutorial on how to connect your application to your database. Bear in mind that this repository do not have a `.env.local` file so it is up to the user to create the file themselves.
 
 **How to integrate MongoDB into Your Next.js App**
 
