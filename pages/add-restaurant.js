@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Nav from '../components/Nav';
 import styles from '../styles/Home.module.css';
+import Head from "next/head";
 
 export default function AddRestaurant() {
     const [name, setName] = useState('');
@@ -56,6 +57,10 @@ export default function AddRestaurant() {
     };
 
     return (
+        <>
+        <Head>
+            <title>Add Restaurant</title>
+        </Head>
         <div>
             <Nav />
             <div className={styles.container}>
@@ -115,6 +120,7 @@ export default function AddRestaurant() {
                 </form>
             </div>
         </div>
+        </>
     )
 
 }

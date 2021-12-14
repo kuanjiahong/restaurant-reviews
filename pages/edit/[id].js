@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Nav from "../../components/Nav";
 import styles from "../../styles/Home.module.css";
+import Head from "next/head";
 
 import { connectToDatabase } from "../../lib/mongodb";
 const ObjectId = require("mongodb").ObjectId
@@ -54,65 +55,70 @@ export default function UpdateRestaurant({ restaurant }) {
 
     }
     return (
+        <>
+        <Head>
+            <title>Edit Restaurant</title>
+        </Head>
         <div>
-        <Nav />
-        <div className={styles.container}>
-            <form onSubmit={handleRestaurant} className={styles.form}>
-                {error ? (
+            <Nav />
+            <div className={styles.container}>
+                <form onSubmit={handleRestaurant} className={styles.form}>
+                    {error ? (
+                        <div className={styles.formItem}>
+                            <h3 className={styles.error}>{error}</h3>
+                        </div>
+                    ) : null}
+                    {message ? (
+                        <div className={styles.formItem}>
+                            <h3 className={styles.message}>{message}</h3>
+                        </div>
+                    ) : null}
                     <div className={styles.formItem}>
-                        <h3 className={styles.error}>{error}</h3>
+                        <label htmlFor="name">Restaurant Name</label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            onChange={(e) => setName(e.target.value)} 
+                            value={name} 
+                            placeholder="Name" 
+                        />
                     </div>
-                ) : null}
-                {message ? (
                     <div className={styles.formItem}>
-                        <h3 className={styles.message}>{message}</h3>
+                        <label htmlFor="cuisine">Cuisine</label>
+                        <input 
+                            type="text" 
+                            name="cuisine" 
+                            onChange={(e) => setCuisine(e.target.value)} 
+                            value={cuisine} 
+                            placeholder="Cuisine"
+                        />
                     </div>
-                ) : null}
-                <div className={styles.formItem}>
-                    <label htmlFor="name">Restaurant Name</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        onChange={(e) => setName(e.target.value)} 
-                        value={name} 
-                        placeholder="Name" 
-                    />
-                </div>
-                <div className={styles.formItem}>
-                    <label htmlFor="cuisine">Cuisine</label>
-                    <input 
-                        type="text" 
-                        name="cuisine" 
-                        onChange={(e) => setCuisine(e.target.value)} 
-                        value={cuisine} 
-                        placeholder="Cuisine"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="rating">Rating</label>
-                    <div onChange={(e) => setRating(e.target.value)}>
-                        <input type="radio" value="5" name="rating" checked={rating=== "5"}/>
-                        <label htmlFor="rating-5">5</label>
-                        <br />
-                        <input type="radio" value="4" name="rating" checked={rating=== "4"}/>
-                        <label htmlFor="rating-4">4</label>
-                        <br />
-                        <input type="radio" value="3" name="rating" checked={rating=== "3"}/>
-                        <label htmlFor="rating-3">3</label>
-                        <br />
-                        <input type="radio" value="2" name="rating" checked={rating=== "2"}/>
-                        <label htmlFor="rating-2">2</label>
-                        <br />
-                        <input type="radio" value="1" name="rating" checked={rating=== "1"}/>
-                        <label htmlFor="rating-1">1</label>
+                    <div>
+                        <label htmlFor="rating">Rating</label>
+                        <div onChange={(e) => setRating(e.target.value)}>
+                            <input type="radio" value="5" name="rating" checked={rating=== "5"}/>
+                            <label htmlFor="rating-5">5</label>
+                            <br />
+                            <input type="radio" value="4" name="rating" checked={rating=== "4"}/>
+                            <label htmlFor="rating-4">4</label>
+                            <br />
+                            <input type="radio" value="3" name="rating" checked={rating=== "3"}/>
+                            <label htmlFor="rating-3">3</label>
+                            <br />
+                            <input type="radio" value="2" name="rating" checked={rating=== "2"}/>
+                            <label htmlFor="rating-2">2</label>
+                            <br />
+                            <input type="radio" value="1" name="rating" checked={rating=== "1"}/>
+                            <label htmlFor="rating-1">1</label>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.formItem}>
-                    <button type="submit">Update Restaurant</button>
-                </div>
-            </form>
+                    <div className={styles.formItem}>
+                        <button type="submit">Update Restaurant</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    </>
     )
 }
 
@@ -122,7 +128,6 @@ export async function getServerSideProps(ctx) {
         let { db } = await connectToDatabase();
         let restaurant = await db.collection('restaurants').find({ _id: restaurantId }).toArray();
         // Return the restaurants
-        console.log(restaurant)
         return {
             props: {
                 restaurant: JSON.parse(JSON.stringify(restaurant)),

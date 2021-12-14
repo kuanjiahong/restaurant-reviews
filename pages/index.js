@@ -8,7 +8,7 @@ export default function Home({ restaurants }) {
     return (
         <div>
             <Head>
-                <title>Home</title>
+                <title>Restaurant Reviews</title>
             </Head>
 
             <Nav />
