@@ -1,3 +1,13 @@
+# Restaurant Reviews
+
+### VIDEO DEMO: https://youtu.be/SyTaLr_E4SU
+
+### Description: This is a simple website that allow the user to view, add, edit and delete restaurant reviews.
+
+This website is created using Nextjs and Mongodb
+
+#
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
